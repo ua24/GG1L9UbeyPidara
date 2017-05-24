@@ -14,6 +14,10 @@ class GameScene: SKScene {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
+    let hunter = SKSpriteNode(imageNamed: "picHunter")
+    var shootingTimer: Timer?
+    
+    
     override func didMove(to view: SKView) {
         
         // Get label node from scene and store it for use later
@@ -21,7 +25,15 @@ class GameScene: SKScene {
         if let label = self.label {
             label.alpha = 0.0
             label.run(SKAction.fadeIn(withDuration: 2.0))
+            label.text = "Ubey Pidara"
         }
+        
+        addChild(hunter)
+        hunter.setScale(0.3)
+        
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(spawnEnemy), userInfo: nil, repeats: true)
+        
+        
         
         // Create shape node to use during mouse interaction
         let w = (self.size.width + self.size.height) * 0.05
@@ -37,29 +49,69 @@ class GameScene: SKScene {
         }
     }
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
+    func spawnEnemy() {
+        let bearNode = SKSpriteNode(imageNamed: "bear")
+        addChild(bearNode)
+        bearNode.size = hunter.size
+        let a = arc4random()%UInt32(size.width)
+        let b = UInt32(size.width)/2
+        
+        let xPos = Int(Double(a) - Double(b))
+        let yPos = Int(Double(arc4random()%UInt32(size.height)) - Double(UInt32(size.height)/2))
+        bearNode.position = CGPoint(x: xPos, y: yPos)
+        bearNode.run(SKAction.sequence([SKAction.move(to: hunter.position, duration: 1), SKAction.removeFromParent()]))
     }
     
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
+    
+    func touchDown(atPoint pos : CGPoint) {
+        startShootingTimer()
+//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
+//            n.position = pos
+//            n.strokeColor = SKColor.green
+//            self.addChild(n)
+//        }
+    }
+    
+    func startShootingTimer() {
+        shootingTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(shoot), userInfo: nil, repeats: true)
+    }
+    
+    func shoot() {
+        let granadeNode = SKSpriteNode(imageNamed: "bee")
+        addChild(granadeNode)
+        granadeNode.size = hunter.size
+        granadeNode.setScale(0.4)
+        granadeNode.position = hunter.position
+        let blowUp = SKAction.customAction(withDuration: 0.05) { (node, dura) in
+            let meatNode = SKSpriteNode(imageNamed: "explosion")
+            meatNode.position = node.position
+            self.addChild(meatNode)
+            meatNode.run(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.fadeOut(withDuration: 1) , SKAction.removeFromParent()]))
         }
+        granadeNode.run(SKAction.sequence([SKAction.move(to: shottingPoint, duration: 0.1), blowUp, SKAction.removeFromParent()]))
+//        shottingPoint
+    }
+    
+    func stopShootingTimer() {
+        shootingTimer?.invalidate()
+    }
+    var shottingPoint = CGPoint.zero
+    func touchMoved(toPoint pos : CGPoint) {
+        shottingPoint = pos
+//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
+//            n.position = pos
+//            n.strokeColor = SKColor.blue
+//            self.addChild(n)
+//        }
     }
     
     func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
+        stopShootingTimer()
+//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
+//            n.position = pos
+//            n.strokeColor = SKColor.red
+//            self.addChild(n)
+//        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
