@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "458B92971EF798C09E623779D74B75EA698BD3BF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "458B92971EF798C09E623779D74B75EA698BD3BF" : 9223372036854775807,
+    "0EDD8B7D16890FD30B449C367FB28BC4EE8371C6" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4E009786-19E7-4CE0-8BBE-352800200575",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "458B92971EF798C09E623779D74B75EA698BD3BF" : "GG1L9UbeyPidara\/",
+    "0EDD8B7D16890FD30B449C367FB28BC4EE8371C6" : "GG1L9UbeyPidara\/GG1L9UbeyPidara\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "GG1L9UbeyPidara",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "GG1L9UbeyPidara.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ua24\/GG1L9UbeyPidara.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0EDD8B7D16890FD30B449C367FB28BC4EE8371C6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ua24\/GG1L9UbeyPidara.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "458B92971EF798C09E623779D74B75EA698BD3BF"
+    }
+  ]
+}
